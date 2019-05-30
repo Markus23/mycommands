@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "mycommands",
+  "version": "${version}",
+  "name": "MyCommands Fabric",
+  "description": "This is MyCommands for Fabric",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+	  "de.mybukit.mycommands.MyCommands"
+    ],
+    "client": [
+	 
+    ]
+  },
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "mixins": [
+    "mycommands.common.json"
+  ],
+  "authors": [
+    "Markus23"
+  ]
+}

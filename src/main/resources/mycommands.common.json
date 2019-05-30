@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "de.mybukit.mycommands.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinDeathBack"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
