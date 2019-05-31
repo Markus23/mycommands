@@ -34,13 +34,13 @@ public class CommandTpa
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity player = context.getSource().getPlayer();
 		 ServerPlayerEntity requestedPlayer = getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
-		
+		 	if(requestedPlayer !=null) {
 				TeleportRequests.add(requestedPlayer.getUuid(), player.getUuid());
 				requestedPlayer.addChatMessage(new TextComponent(McColor.green+ "Tpa request from "+McColor.gold+player.getEntityName()), false);
 				requestedPlayer.addChatMessage(new TextComponent( McColor.green+"/tpyes "+McColor.gold+"or"+McColor.red+" /tpno"), false);
-				return 1;
-	
-		 
+				
+		 		}
+		 return 1;
 	}
 	   private static ServerPlayerEntity getPlayer(ServerCommandSource serverCommandSource_1, Collection<ServerPlayerEntity> collection_1) {
 		      Iterator<ServerPlayerEntity> var3 = collection_1.iterator();
