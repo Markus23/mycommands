@@ -12,9 +12,7 @@ import de.mybukit.mycommands.commands.CommandBack;
 import de.mybukit.mycommands.commands.CommandDay;
 import de.mybukit.mycommands.commands.CommandDelHome;
 import de.mybukit.mycommands.commands.CommandDelWarp;
-import de.mybukit.mycommands.commands.CommandEnderChest;
 import de.mybukit.mycommands.commands.CommandFly;
-import de.mybukit.mycommands.commands.CommandGM;
 import de.mybukit.mycommands.commands.CommandGod;
 import de.mybukit.mycommands.commands.CommandHeal;
 import de.mybukit.mycommands.commands.CommandHome;
@@ -31,7 +29,6 @@ import de.mybukit.mycommands.commands.CommandTpDeny;
 import de.mybukit.mycommands.commands.CommandTpa;
 import de.mybukit.mycommands.commands.CommandWarp;
 import de.mybukit.mycommands.helper.Config;
-
 import de.mybukit.mycommands.helper.WarpPoint;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.server.ServerStartCallback;
