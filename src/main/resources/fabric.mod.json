@@ -9,17 +9,14 @@
   "entrypoints": {
     "main": [
 	  "de.mybukit.mycommands.MyCommands"
-    ],
-    "client": [
-	 
     ]
   },
-  "requires": {
+  "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*"
   },
   "mixins": [
-    "mycommands.common.json"
+    
   ],
   "authors": [
     "Markus23"
