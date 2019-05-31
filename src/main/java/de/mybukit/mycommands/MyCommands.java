@@ -73,7 +73,7 @@ public class MyCommands implements ModInitializer {
 		CommandRegistry.INSTANCE.register(false, CommandDelWarp::register);
 		//CommandRegistry.INSTANCE.register(false, CommandEnderChest::register);
 		CommandRegistry.INSTANCE.register(false, CommandFly::register);
-		CommandRegistry.INSTANCE.register(false, CommandGM::register);
+		//CommandRegistry.INSTANCE.register(false, CommandGM::register);
 		CommandRegistry.INSTANCE.register(false, CommandGod::register);
 		CommandRegistry.INSTANCE.register(false, CommandHeal::register);
 		CommandRegistry.INSTANCE.register(false, CommandHome::register);
@@ -142,7 +142,7 @@ public class MyCommands implements ModInitializer {
     	configOptions.put("delwarp",true);
     	//configOptions.put("enderchest", true);
     	configOptions.put("fly", true);
-    	configOptions.put("gm", true);
+    	//configOptions.put("gm", true);
     	configOptions.put("god", true);
     	configOptions.put("home",false);
     	configOptions.put("heal",false);
