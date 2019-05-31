@@ -71,7 +71,7 @@ public class MyCommands implements ModInitializer {
 		CommandRegistry.INSTANCE.register(false, CommandDay::register);
 		CommandRegistry.INSTANCE.register(false, CommandDelHome::register);
 		CommandRegistry.INSTANCE.register(false, CommandDelWarp::register);
-		CommandRegistry.INSTANCE.register(false, CommandEnderChest::register);
+		//CommandRegistry.INSTANCE.register(false, CommandEnderChest::register);
 		CommandRegistry.INSTANCE.register(false, CommandFly::register);
 		CommandRegistry.INSTANCE.register(false, CommandGM::register);
 		CommandRegistry.INSTANCE.register(false, CommandGod::register);
@@ -140,7 +140,7 @@ public class MyCommands implements ModInitializer {
     	configOptions.put("day",true);
     	configOptions.put("delhome",false);
     	configOptions.put("delwarp",true);
-    	configOptions.put("enderchest", true);
+    	//configOptions.put("enderchest", true);
     	configOptions.put("fly", true);
     	configOptions.put("gm", true);
     	configOptions.put("god", true);
