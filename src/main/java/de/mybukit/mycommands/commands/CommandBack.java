@@ -30,12 +30,8 @@ public class CommandBack
 		if (Teleport.goBack(player))
 		{
 			player.addChatMessage(new TranslatableComponent("commands.back.done").setStyle(MyStyle.Green), false);
-			
-			  //player.addChatMessage(new StringTextComponent(McColor.green + "Warped back to previous location."), false);
-			
 			} else
 			{
-			  //player.addChatMessage(new StringTextComponent(McColor.darkRed	+ "You have not warped anywhere!"), false);
 				player.addChatMessage(new TranslatableComponent("commands.back.failure").setStyle(MyStyle.Red), false);
 		}
 		return 1;

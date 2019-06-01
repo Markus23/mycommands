@@ -30,10 +30,8 @@ public class CommandSun
 
 		context.getSource().getWorld().getLevelProperties().setClearWeatherTime(10000);
 	      context.getSource().getWorld().getLevelProperties().setRainTime(0);
-	      //context.getSource().getWorld().getLevelProperties().setThunderTime(int_1);
 	      context.getSource().getWorld().getLevelProperties().setRaining(false);
 	      context.getSource().getWorld().getLevelProperties().setThundering(false);
-	      //context.getSource().sendFeedback(new TranslatableComponent("Sun"), false);
 		player.addChatMessage(new TranslatableComponent("commands.sun.done").setStyle(MyStyle.Green), false);
 
 		return 1;

@@ -39,17 +39,13 @@ public class CommandHome  {
 		{
 			Teleport.warp(player, home.location, false);
 			player.addChatMessage(new TranslatableComponent("commands.home.done",home.homename).setStyle(MyStyle.Green), false);
-			//player.addChatMessage(new StringTextComponent(McColor.green + "Warped home."), false);
 		} else
 		{	
 			player.addChatMessage(new TranslatableComponent("commands.home.wrong").setStyle(MyStyle.Red), false);
 			if(!HomePoint.gethomePoints(player).equals("")){
 				player.addChatMessage(new TranslatableComponent("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);	
-				//player.addChatMessage(new StringTextComponent(McColor.green + "Your HomePointNames: " + McColor.aqua + HomePoint.gethomePoints(player)), false);
 			}else{
 				player.addChatMessage(new TranslatableComponent("commands.home.failure").setStyle(MyStyle.Red), false);
-
-				//player.addChatMessage(new StringTextComponent(McColor.darkRed +"You are homeless!"), false);
 			}
 		}
 		return 1;

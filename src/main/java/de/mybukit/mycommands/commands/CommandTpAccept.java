@@ -27,15 +27,12 @@ public class CommandTpAccept  {
 
 		dispatcher.register(literal);
 		LiteralArgumentBuilder<ServerCommandSource> literal1 = CommandManager.literal("tpyes");
-		literal.requires((source) -> {
+		literal1.requires((source) -> {
 			return Permission.hasperm(source, literal);
         }).executes(context -> execute(context));
 
 		dispatcher.register(literal1);
-/*		dispatcher.register(CommandManager.literal("tpyes").redirect(literal.build()));
-		dispatcher.register(CommandManager.literal("yes").redirect(literal.build()));
-		dispatcher.register(CommandManager.literal("y").redirect(literal.build()));
-*/
+
             
 	}
 

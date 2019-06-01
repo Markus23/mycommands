@@ -40,7 +40,6 @@ public class CommandDelHome {
 
 		if (warpPoint == null)
 		{
-			//player.addChatMessage(new StringTextComponent(McColor.aqua + homePointName + McColor.darkRed + " does not exist."), false);
 			player.addChatMessage(new TranslatableComponent("commands.delhome.failure",homePointName).setStyle(MyStyle.Red), false);
 			player.addChatMessage(new TranslatableComponent("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);	
 
@@ -48,7 +47,6 @@ public class CommandDelHome {
 		else
 		{
 			HomePoint.delHomePoint(player, homePointName);
-			//player.addChatMessage(new StringTextComponent(McColor.aqua + homePointName + McColor.grey +" has been deleted."), false);
 			player.addChatMessage(new TranslatableComponent("commands.delhome.done",homePointName).setStyle(MyStyle.Green), false);
 
 		}

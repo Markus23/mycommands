@@ -30,13 +30,9 @@ public class CommandDay{
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException{
 		ServerWorld world = context.getSource().getWorld();
 		ServerPlayerEntity player = context.getSource().getPlayer();
-		//player.sendMessage(new TextComponentString("Day"));
 		world.setTimeOfDay(2000);
 
 		player.addChatMessage(new TranslatableComponent("commands.day.done").setStyle(MyStyle.Green), false);
-
-
-
 		return Command.SINGLE_SUCCESS;
 	}
 }

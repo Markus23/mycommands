@@ -40,12 +40,9 @@ public class CommandSetWarp   {
 			if (warpPoint == null)
 			{
 				WarpPoint.setWarpPoint(player,warpPointName);
-				//player.addChatMessage(new TranslatableComponent("commands.setwarp.done", warpPoint ,new Object[0]).setStyle(new Style().setColor(TextFormat.YELLOW)), false);
 				player.addChatMessage(new TranslatableComponent("commands.setwarp.done",warpPointName).setStyle(MyStyle.Green), false);
 
 			}else{
-				
-				//player.addChatMessage(new StringTextComponent(McColor.pink + "Warppoint already exists"), false);
 				player.addChatMessage(new TranslatableComponent("commands.setwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
 
 			}

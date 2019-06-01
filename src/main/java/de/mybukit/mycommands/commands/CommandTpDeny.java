@@ -30,12 +30,7 @@ public class CommandTpDeny {
         }).executes(context -> execute(context));
             
 		dispatcher.register(literal1);
-		
-/*		dispatcher.register(CommandManager.literal("tpno").redirect(literal.build()));
-		dispatcher.register(CommandManager.literal("no").redirect(literal.build()));
-		dispatcher.register(CommandManager.literal("n").redirect(literal.build()));
-*/
-		
+	
             
 	}
 

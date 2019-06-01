@@ -45,7 +45,6 @@ public class CommandDelWarp  {
 
 			if (warpPoint == null)
 			{
-			//	player.addChatMessage(new StringTextComponent(McColor.aqua + warpPointName + McColor.darkRed + " does not exist."), false);
 				player.addChatMessage(new TranslatableComponent("commands.delwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
 
 			}

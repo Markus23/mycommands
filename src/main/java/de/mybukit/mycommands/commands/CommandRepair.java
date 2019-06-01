@@ -39,9 +39,7 @@ public class CommandRepair {
 		item.setDamage(0);
 		player.addChatMessage(new TranslatableComponent("commands.repair.done").setStyle(MyStyle.Green), false);
 
-		//source.sendFeedback(new TranslatableComponent("commands.repair.done", new Object[0]).setStyle(new Style().setColor(TextFormat.YELLOW)), true);
 		}else {
-		//source.sendFeedback(new TranslatableComponent("commands.repair.failure", new Object[0]).setStyle(new Style().setColor(TextFormat.RED)), true);
 			player.addChatMessage(new TranslatableComponent("commands.repair.failure").setStyle(MyStyle.Red), false);
 
 		}

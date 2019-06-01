@@ -54,9 +54,7 @@ public class CommandRndTp
 
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity player = context.getSource().getPlayer();
-		//ServerPlayerEntity player1 = context.getSource().getPlayer();
 		BlockPos pos1 = findBlockPos(player.getEntityWorld()).getPosfrom();
-		/*BlockPos pos1 = mycomm.getTopPos(player.getEntityWorld(), pos);*/
 	
 		
 		
@@ -69,7 +67,6 @@ public class CommandRndTp
 	       
 		} 
 		
-		//player.setPosition(pos1.getX(), pos1.getY()+1, pos1.getZ());
 		Teleport.warp(
 				player,new Location(pos1,player.dimension.getRawId()),false);
 		return 1;
@@ -77,7 +74,7 @@ public class CommandRndTp
 	}
 	public static Location findBlockPos(World world)
 	{
-		double dist = 50 + world.random.nextDouble() * (150 - 50);
+		double dist = 150 + world.random.nextDouble() * (150 - 50);
 		double angle = world.random.nextDouble() * Math.PI * 2D;
 
 		int x = MathHelper.floor(Math.cos(angle) * dist);

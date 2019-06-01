@@ -25,6 +25,9 @@
  "commands.setwarp.failure": "Warp %s does exsits!",
  "commands.sun.done": "sun shines!",
  "commands.warp.done": "Warped to %s!",
- "commands.warp.failure": "Warp %s does not exsits!"
+ "commands.warp.failure": "Warp %s does not exsits!",
+ "commands.tpa.request": "Tpa request from %s",
+ "commands.tpa.info": "/tpaccept /tpyes or /tpdeny /tpno",
+ "commands.tpa.error": "You can not request your self "
  
 }

@@ -29,9 +29,8 @@ public class CommandSetSpawn
 
 
 	
-		//Location loc = new Location(player);
+		
 		context.getSource().getWorld().setSpawnPos(player.getBlockPos().up());
-		//player.getEntityWorld().setSpawnPos(player.getPos());
 		player.addChatMessage(new TranslatableComponent("commands.setspawn.done").setStyle(MyStyle.Green), false);
 
 		return 1;
