@@ -43,8 +43,6 @@ public class MyCommands implements ModInitializer {
 	public static File configdir = FabricLoader.getInstance().getConfigDirectory();
 
 	public static File mycommandsdir=new File(configdir,"mycommands");
-	//public static File configfile = new File(mycommandsdir,"config.cfg");
-	//public static MyConfig config_old;
 	public static Config config;
 
 	public static HashMap<String, Boolean>perms =new HashMap<>();
@@ -94,7 +92,7 @@ public class MyCommands implements ModInitializer {
 	private static void initWorlds() {
 		ServerStartCallback.EVENT.register(server ->{
 
-			//registerCommands(server);
+			
 
 			if(server.isDedicated()) {
 				worlddir = new File(server.getRunDirectory(),server.getLevelName());

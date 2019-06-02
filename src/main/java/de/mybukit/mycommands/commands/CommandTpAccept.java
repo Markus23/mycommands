@@ -11,7 +11,7 @@ import de.mybukit.mycommands.commands.mycomm.TeleportRequests;
 import de.mybukit.mycommands.helper.Location;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.Teleport;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -49,19 +49,19 @@ public class CommandTpAccept  {
 					ServerPlayerEntity teleportTo =  player;
 
 					
-						teleporter.addChatMessage(new TextComponent("gotaccepted"), false);
-						teleportTo.addChatMessage(new TextComponent("youaccepted"), false);
+						teleporter.addChatMessage(new TranslatableComponent("commands.tpa.gotaccepted"), false);
+						teleportTo.addChatMessage(new TranslatableComponent("commands.tpa.youaccepted"), false);
 						Teleport.warp(teleporter, new Location(teleportTo), true);
 						//teleporter.setPositionAndUpdate(teleportTo.posX, teleportTo.posY, teleportTo.posZ);
 					//}
 				}
 			}
 			if (!playerFound) {
-				player.addChatMessage(new TextComponent("notonline"), playerFound);
+				player.addChatMessage(new TranslatableComponent("commands.tpa.notonline"), false);
 			}
 			TeleportRequests.remove(player.getUuid());
 		} else {
-			player.addChatMessage(new TextComponent("nonetoaccept"), false);
+			player.addChatMessage(new TranslatableComponent("commands.tpa.nonetoaccept"), false);
 		}
 		return 1;
 	}

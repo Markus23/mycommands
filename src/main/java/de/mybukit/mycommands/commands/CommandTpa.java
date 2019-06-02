@@ -1,8 +1,5 @@
 package de.mybukit.mycommands.commands;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -26,7 +23,7 @@ public class CommandTpa
 		LiteralArgumentBuilder<ServerCommandSource> literal = CommandManager.literal("tpa");
 		literal.requires((source) -> {
 			return Permission.hasperm(source, literal);})
-		.then(CommandManager.argument("target", EntityArgumentType.players()).executes(context -> execute(context)));
+		.then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> execute(context)));
             
 		dispatcher.register(literal);
             
@@ -34,7 +31,7 @@ public class CommandTpa
 
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity player = context.getSource().getPlayer();
-		 ServerPlayerEntity requestedPlayer = getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
+		 ServerPlayerEntity requestedPlayer = EntityArgumentType.getPlayer(context, "target");
 		 	if(requestedPlayer.getUuid() != player.getUuid()) {
 				TeleportRequests.add(requestedPlayer.getUuid(), player.getUuid());
 
@@ -48,14 +45,5 @@ public class CommandTpa
 		 		}
 		 return 1;
 	}
-	   private static ServerPlayerEntity getPlayer(ServerCommandSource serverCommandSource_1, Collection<ServerPlayerEntity> collection_1) {
-		      Iterator<ServerPlayerEntity> var3 = collection_1.iterator();
-		      ServerPlayerEntity serverPlayerEntity_1 = null;
-		      while(var3.hasNext()) {
-		         serverPlayerEntity_1 = (ServerPlayerEntity)var3.next();
-		      }
 
-		     
-			return serverPlayerEntity_1;
-		   }
 }
