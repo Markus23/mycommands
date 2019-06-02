@@ -15,7 +15,7 @@
  "commands.home.list": "你的家位置点!",
  "commands.home.wrong": "家不存在",
  "commands.rain.done": "下雨了!",
- "commands.repair.done" "耶!它是崭新的",
+ "commands.repair.done": "耶!它是崭新的",
  "commands.repair.failure": "它没有损坏!",
  "commands.sethome.done": "家 %s 已设置!",
  "commands.sethome.failure": "家 %s 已存在!",
