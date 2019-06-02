@@ -28,6 +28,13 @@
  "commands.warp.failure": "Warp %s does not exsits!",
  "commands.tpa.request": "Tpa request from %s",
  "commands.tpa.info": "/tpaccept /tpyes or /tpdeny /tpno",
- "commands.tpa.error": "You can not request your self "
+ "commands.tpa.error": "You can not request your self ",
+ "commands.tpa.youdenied":"youdenied",
+ "commands.tpa.gotdenied":"gotdenied",
+ "commands.tpa.nonetodeny":"nonetodeny",
+ "commands.tpa.youaccepted": "youaccepted",
+ "commands.tpa.gotaccepted": "gotaccepted",
+ "commands.tpa.notonline": "notonline",
+ "commands.tpa.nonetoaccept":"nonetoaccept"
  
 }
