@@ -25,7 +25,7 @@
  "commands.setwarp.failure": "传送点 %s 已存在!",
  "commands.sun.done": "阳光普照!",
  "commands.warp.done": "已传送到 %s!",
- "commands.warp.failure": "传送点 %s 不存在!"
+ "commands.warp.failure": "传送点 %s 不存在!",
  "commands.tpa.request": "收到来自 %s 的传送申请",
  "commands.tpa.info": "/tpaccept /tpyes 同意申请 或  /tpdeny /tpno 拒绝申请",
  "commands.tpa.error": "你不能对自己提出申请",
