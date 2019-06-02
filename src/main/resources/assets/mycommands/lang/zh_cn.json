@@ -26,5 +26,14 @@
  "commands.sun.done": "阳光普照!",
  "commands.warp.done": "已传送到 %s!",
  "commands.warp.failure": "传送点 %s 不存在!"
- 
+ "commands.tpa.request": "收到来自 %s 的传送申请",
+ "commands.tpa.info": "/tpaccept /tpyes 同意申请 或  /tpdeny /tpno 拒绝申请",
+ "commands.tpa.error": "你不能对自己提出申请",
+ "commands.tpa.youdenied":"你已拒绝",
+ "commands.tpa.gotdenied":"你的申请被拒绝了",
+ "commands.tpa.nonetodeny":"无人响应拒绝",
+ "commands.tpa.youaccepted": "你已接受申请",
+ "commands.tpa.gotaccepted": "你的申请被接受了",
+ "commands.tpa.notonline": "不在线",
+ "commands.tpa.nonetoaccept":"无人响应接受"
 }
