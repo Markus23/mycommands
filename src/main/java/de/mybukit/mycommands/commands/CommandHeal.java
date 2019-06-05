@@ -27,18 +27,17 @@ public class CommandHeal
 		ServerPlayerEntity playerEntity = context.getSource().getPlayer();
 		playerEntity.setHealth(playerEntity.getHealthMaximum());
 		playerEntity.getHungerManager().setFoodLevel(20);
-		playerEntity.getHungerManager().setSaturationLevelClient(5F);
+		//playerEntity.getHungerManager().setSaturationLevelClient(5F);
 		
 		return 1;
 	}
 	private static int execut(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		ServerPlayerEntity playerEntity = context.getSource().getPlayer();
 		
 		 ServerPlayerEntity requestedPlayer = mycomm.getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
 
-		requestedPlayer.setHealth(playerEntity.getHealthMaximum());
+		requestedPlayer.setHealth(requestedPlayer.getHealthMaximum());
 		requestedPlayer.getHungerManager().setFoodLevel(20);
-		requestedPlayer.getHungerManager().setSaturationLevelClient(5F);
+		//requestedPlayer.getHungerManager().setSaturationLevelClient(5F);
 		
 		return 1;
 	}

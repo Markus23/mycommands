@@ -11,7 +11,7 @@ import de.mybukit.mycommands.helper.Teleport;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 
 public class CommandSpawn 
@@ -29,9 +29,13 @@ public class CommandSpawn
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity player = context.getSource().getPlayer();
 
-
-		BlockPos spawn = context.getSource().getWorld().getSpawnPos();
-		Teleport.warp(player, new Location(spawn.up(),0), true);
+		World world = context.getSource().getWorld();
+		int x = world.getLevelProperties().getSpawnX();
+		int y = world.getLevelProperties().getSpawnY();
+		int z = world.getLevelProperties().getSpawnZ();
+		int dim = 0;
+		
+		Teleport.warp(player, new Location(x, y, z, dim), true);
 		return 1;
 	}
 }

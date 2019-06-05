@@ -29,6 +29,7 @@ import de.mybukit.mycommands.commands.CommandTpDeny;
 import de.mybukit.mycommands.commands.CommandTpa;
 import de.mybukit.mycommands.commands.CommandWarp;
 import de.mybukit.mycommands.helper.Config;
+import de.mybukit.mycommands.helper.HomePoint;
 import de.mybukit.mycommands.helper.WarpPoint;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.server.ServerStartCallback;
@@ -104,6 +105,7 @@ public class MyCommands implements ModInitializer {
 		});
 		ServerStartCallback.EVENT.register(server ->{
 			WarpPoint.loadAll();
+			HomePoint.loadAll();
 		});
 
 

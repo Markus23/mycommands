@@ -1,9 +1,7 @@
 package de.mybukit.mycommands.helper;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 
-import net.minecraft.client.network.packet.PlayerPositionLookS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -29,13 +27,13 @@ public class Teleport
 			player.changeDimension(DimensionType.byRawId(dimension));
 		if (!exact)
 		{
-			player.networkHandler.teleportRequest(loc.x + 0.5, loc.y, loc.z + 0.5,player.yaw, player.pitch, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class));
+			player.networkHandler.requestTeleport(loc.x + 0.5, loc.y, loc.z + 0.5,player.yaw, player.pitch);
 			//player.setPositionAndAngles(loc.x + 0.5, loc.y, loc.z + 0.5,player.pitch,player.yaw);
 			//player.setPosition(loc.x + 0.5, loc.y, loc.z + 0.5);
 
 		} else
 		{
-			player.networkHandler.teleportRequest(loc.posX, loc.posY, loc.posZ,player.yaw,player.pitch, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class));
+			player.networkHandler.requestTeleport(loc.posX, loc.posY, loc.posZ,player.yaw,player.pitch);
 		}
 	}
 

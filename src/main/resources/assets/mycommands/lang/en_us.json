@@ -12,7 +12,7 @@
   "commands.god.disabled": "God off!",
  "commands.home.done": "Warped Home!",
  "commands.home.failure": "You have no home!",
- "commands.home.list": "Your Home Points!",
+ "commands.home.list": "Your Home Points: %s",
  "commands.home.wrong": "Home not Exisit!",
  "commands.rain.done": "It Rains!",
  "commands.repair.done": "Yeah! it´s New",
