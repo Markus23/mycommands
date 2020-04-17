@@ -13,3 +13,6 @@ build1.gradle
 Minecraft_Client.launch
 Minecraft_Server.launch
 build-curse.bat
+/TaylorCommands.iml
+/TaylorCommands.ipr
+/TaylorCommands.iws

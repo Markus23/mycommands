@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "mycommands",
+  "id": "taylor_commands",
   "version": "${version}",
-  "name": "MyCommands Fabric",
-  "description": "This is MyCommands for Fabric",
+  "name": "TaylorCommands Fabric",
+  "description": "Commands for fabric",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
-	  "de.mybukit.mycommands.MyCommands"
+	  "ca.samueltaylor.taylor_commands.TaylorCommands"
     ]
   },
   "depends": {
@@ -19,6 +19,7 @@
     
   ],
   "authors": [
-    "Markus23"
+    "Markus23",
+    "Sam Taylor"
   ]
 }
