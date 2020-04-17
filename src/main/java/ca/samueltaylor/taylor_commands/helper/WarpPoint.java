@@ -11,7 +11,7 @@ public class WarpPoint
 	public String name;
 	public Location location;
 
-	private static SaveFile warpPointsSaveFile = new SaveFile("warpPoints.txt", TaylorCommands.getWorldDir().toString()+"/mycommands/warps/");
+	private static SaveFile warpPointsSaveFile = new SaveFile("warpPoints.txt", TaylorCommands.getWorldDir().toString()+"/taylor_commands/warps/");
 
 	public static ArrayList<WarpPoint> warpPoints = new ArrayList<WarpPoint>();
 

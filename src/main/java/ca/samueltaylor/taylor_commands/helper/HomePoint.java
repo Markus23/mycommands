@@ -12,7 +12,7 @@ public class HomePoint
 	public Location location;
 	public String homename;
 
-	private static SaveFile homesSaveFile = new SaveFile("homes.txt", TaylorCommands.getWorldDir().toString()+"/mycommands/homes/");
+	private static SaveFile homesSaveFile = new SaveFile("homes.txt", TaylorCommands.getWorldDir().toString()+"/taylor_commands/homes/");
 
 	public static ArrayList<HomePoint> homes = new ArrayList<HomePoint>();
 
