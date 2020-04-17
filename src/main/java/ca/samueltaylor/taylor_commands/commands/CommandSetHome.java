@@ -1,6 +1,7 @@
 package ca.samueltaylor.taylor_commands.commands;
 
 
+import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.HomePoint;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -14,61 +15,69 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 
 public class CommandSetHome {
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		LiteralArgumentBuilder<ServerCommandSource> literal = CommandManager.literal("sethome");
-		literal.requires((source) -> {
-			return Permission.hasperm(source, literal);
-		}).executes(context -> execut(context))
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        LiteralArgumentBuilder<ServerCommandSource> literal = CommandManager.literal("sethome");
+        literal.requires((source) -> {
+            return Permission.hasperm(source, literal);
+        }).executes(CommandSetHome::execut)
+                .then(CommandManager.argument("HomeName", StringArgumentType.word())
+                        .executes(CommandSetHome::execute));
+        dispatcher.register(literal);
+    }
 
-		.then(CommandManager.argument("HomeName", StringArgumentType.word()).
-				executes(context -> execute(context)));
+    public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        String args = StringArgumentType.getString(context, "HomeName").toString();
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        int homes = HomePoint.getHomecounts(player);
+        ChatMessage chat = new ChatMessage(player);
 
-		dispatcher.register(literal);
-	}
+        if (homes < 5) {
+            HomePoint home = HomePoint.getHome(player, args);
+            if (home == null) {
+                HomePoint.setHome(player, args);
+//                player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, args).homename), false);
+                chat.send("Home " + HomePoint.getHome(player, args).homename + " set!");
+            } else {
+//                player.sendMessage(new TranslatableText("commands.sethome.failure", args), false);
+//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
+                chat.send("Could not set home, it already exists!");
+                chat.send("Your homes: " + HomePoint.gethomePoints(player));
+            }
+        } else {
+//            player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
+//            player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
+            chat.send("You have the maximum number of homes!");
+            chat.send("Your homes: " + HomePoint.gethomePoints(player));
+        }
+        return 1;
+    }
 
-	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		String args = StringArgumentType.getString(context, "HomeName").toString();
-		ServerPlayerEntity player = context.getSource().getPlayer();
-		int homes= HomePoint.getHomecounts(player);
-		if (homes<5){
-			HomePoint home = HomePoint.getHome(player, args);
-			if(home ==null){
-				HomePoint.setHome(player, args);
-				player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, args).homename), false);
+    public static int execut(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        int homes = HomePoint.getHomecounts(player);
+        ChatMessage chat = new ChatMessage(player);
 
-			}else{
-				player.sendMessage(new TranslatableText("commands.sethome.failure",args), false);
+        if (homes < 5) {
+            HomePoint home = HomePoint.getHome(player, "home");
+            if (home == null) {
+                HomePoint.setHome(player, "home");
+//                player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, "home").homename), false);
+                chat.send("Home " + HomePoint.getHome(player, "home").homename + " set!");
+            } else {
+//                player.sendMessage(new TranslatableText("commands.sethome.failure", "home"), false);
+//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
+                chat.send("Could not set home, it already exists!");
+                chat.send("Your homes: " + HomePoint.gethomePoints(player));
 
-				player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
-			}
-		}else{
-			player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
-			player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
-
-		}
-		return 1;
-	}
-
-	public static int execut(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		ServerPlayerEntity player = context.getSource().getPlayer();
-		int homes= HomePoint.getHomecounts(player);
-		if (homes<5){
-			HomePoint home = HomePoint.getHome(player, "home");
-			if(home ==null){
-				HomePoint.setHome(player, "home");
-				player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, "home").homename), false);
-
-			}else{
-				player.sendMessage(new TranslatableText("commands.sethome.failure","home"), false);
-				player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
-
-			}
-		}else {
-			player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
-			player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
-		}
-		return 1;
-	}
+            }
+        } else {
+//            player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
+//            player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
+            chat.send("You have the maximum number of homes!");
+            chat.send("Your homes: " + HomePoint.gethomePoints(player));
+        }
+        return 1;
+    }
 }
 
 
