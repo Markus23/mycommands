@@ -3,6 +3,8 @@
 /.settings/
 /bin/
 /run/
+/.idea/
+/out/
 .classpath
 build.bat
 gen.bat
