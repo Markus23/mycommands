@@ -1,8 +1,12 @@
 package de.mybukit.mycommands.helper;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
 public class Teleport
@@ -19,21 +23,18 @@ public class Teleport
 			Teleport.playerBackMap.remove(player);
 		}
 		playerBackMap.put(player, new Location(player));
-		
-		int dimension = loc.dimension;
 
-		if (dimension != player.dimension.getRawId())
-			//MyCommandBase.transDimension(player, loc);
-			player.changeDimension(DimensionType.byRawId(dimension));
+		ServerWorld targetWorld = Location.getServerWorldByKey(Objects.requireNonNull(player.getServer()),loc.dimension);
+
 		if (!exact)
 		{
-			player.networkHandler.requestTeleport(loc.x + 0.5, loc.y, loc.z + 0.5,player.yaw, player.pitch);
+			player.teleport(targetWorld,loc.x + 0.5, loc.y, loc.z + 0.5, player.getYaw(), player.getPitch());
 			//player.setPositionAndAngles(loc.x + 0.5, loc.y, loc.z + 0.5,player.pitch,player.yaw);
 			//player.setPosition(loc.x + 0.5, loc.y, loc.z + 0.5);
 
 		} else
 		{
-			player.networkHandler.requestTeleport(loc.posX, loc.posY, loc.posZ,player.yaw,player.pitch);
+			player.teleport(targetWorld,loc.posX, loc.posY, loc.posZ + 0.5, player.getYaw(), player.getPitch());
 		}
 	}
 

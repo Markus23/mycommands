@@ -9,10 +9,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.commands.mycomm.TeleportRequests;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class CommandTpDeny {
 	
@@ -36,17 +37,17 @@ public class CommandTpDeny {
 		ServerPlayerEntity player = context.getSource().getPlayer();
 
 		if (TeleportRequests.pending(player.getUuid())) {
-			player.addChatMessage(new TranslatableComponent("commands.tpa.youdenied"), false);
-			List<ServerPlayerEntity> playerlist = context.getSource().getMinecraftServer().getPlayerManager().getPlayerList();
+			player.sendMessage(Text.translatable("commands.tpa.youdenied"), false);
+			List<ServerPlayerEntity> playerlist = context.getSource().getServer().getPlayerManager().getPlayerList();
 			for (int i = 0; i < playerlist.size(); ++ i) {
 				if (playerlist.get(i).getUuid().equals(TeleportRequests.fromWho(player.getUuid()))) {
-					playerlist.get(i).addChatMessage(new TranslatableComponent("commands.tpa.gotdenied"), false);
+					playerlist.get(i).sendMessage(Text.translatable("commands.tpa.gotdenied"), false);
 				}
 			}
 			TeleportRequests.remove(player.getUuid());
 
 		} else {
-			player.addChatMessage(new TranslatableComponent("commands.tpa.nonetodeny"), false);
+			player.sendMessage(Text.translatable("commands.tpa.nonetodeny"), false);
 		}
 		return 1;
 	}

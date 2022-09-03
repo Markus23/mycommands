@@ -11,11 +11,11 @@ import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.Teleport;
 import de.mybukit.mycommands.helper.WarpPoint;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 
 public class CommandWarp  {
@@ -39,7 +39,7 @@ public class CommandWarp  {
 		
 		if ( par2ArrayOfStr == ""||  par2ArrayOfStr ==null)
 		{
-			player.addChatMessage(new TextComponent("WarpPointNames: " + WarpPoint.getWarpPoints()).setStyle(MyStyle.Aqua),false);
+			player.sendMessage(Text.of("WarpPointNames: " + WarpPoint.getWarpPoints()).copy().setStyle(MyStyle.Aqua),false);
 
 		} 
 		else 
@@ -51,11 +51,11 @@ public class CommandWarp  {
 			{
 				Location loc = WarpPoint.getWarpPoint(warpPointName).location;
 			Teleport.warp(player, loc, false);
-				player.addChatMessage(new TranslatableComponent("commands.warp.done",warpPointName).setStyle(MyStyle.Green), false);
+				player.sendMessage(Text.translatable("commands.warp.done",warpPointName).setStyle(MyStyle.Green), false);
 			}else{
-				player.addChatMessage(new TranslatableComponent("commands.warp.failure",warpPointName).setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.warp.failure",warpPointName).setStyle(MyStyle.Red), false);
 
-				player.addChatMessage(new TextComponent("WarpPointNames: "+WarpPoint.getWarpPoints()).setStyle(MyStyle.Aqua), false);
+				player.sendMessage(Text.of("WarpPointNames: "+WarpPoint.getWarpPoints()).copy().setStyle(MyStyle.Aqua), false);
 
 			}
 

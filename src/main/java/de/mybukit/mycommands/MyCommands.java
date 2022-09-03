@@ -1,40 +1,21 @@
 package de.mybukit.mycommands;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import de.mybukit.mycommands.commands.CommandBack;
-import de.mybukit.mycommands.commands.CommandDay;
-import de.mybukit.mycommands.commands.CommandDelHome;
-import de.mybukit.mycommands.commands.CommandDelWarp;
-import de.mybukit.mycommands.commands.CommandFly;
-import de.mybukit.mycommands.commands.CommandGod;
-import de.mybukit.mycommands.commands.CommandHeal;
-import de.mybukit.mycommands.commands.CommandHome;
-import de.mybukit.mycommands.commands.CommandRain;
-import de.mybukit.mycommands.commands.CommandRepair;
-import de.mybukit.mycommands.commands.CommandRndTp;
-import de.mybukit.mycommands.commands.CommandSetHome;
-import de.mybukit.mycommands.commands.CommandSetSpawn;
-import de.mybukit.mycommands.commands.CommandSetWarp;
-import de.mybukit.mycommands.commands.CommandSpawn;
-import de.mybukit.mycommands.commands.CommandSun;
-import de.mybukit.mycommands.commands.CommandTpAccept;
-import de.mybukit.mycommands.commands.CommandTpDeny;
-import de.mybukit.mycommands.commands.CommandTpa;
-import de.mybukit.mycommands.commands.CommandWarp;
+import de.mybukit.mycommands.commands.*;
 import de.mybukit.mycommands.helper.Config;
 import de.mybukit.mycommands.helper.HomePoint;
 import de.mybukit.mycommands.helper.WarpPoint;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.server.ServerStartCallback;
-import net.fabricmc.fabric.api.registry.CommandRegistry;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.text.Text;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyCommands implements ModInitializer {
 
@@ -56,54 +37,55 @@ public class MyCommands implements ModInitializer {
 		
 		config = new Config("mycommands/config", this.loadConfig());
 
-	
-			
-		
-
-
 		initWorlds();
 
-		CommandRegistry.INSTANCE.register(false, CommandBack::register);
-		CommandRegistry.INSTANCE.register(false, CommandDay::register);
-		CommandRegistry.INSTANCE.register(false, CommandDelHome::register);
-		CommandRegistry.INSTANCE.register(false, CommandDelWarp::register);
-		//CommandRegistry.INSTANCE.register(false, CommandEnderChest::register);
-		CommandRegistry.INSTANCE.register(false, CommandFly::register);
-		//CommandRegistry.INSTANCE.register(false, CommandGM::register);
-		CommandRegistry.INSTANCE.register(false, CommandGod::register);
-		CommandRegistry.INSTANCE.register(false, CommandHeal::register);
-		CommandRegistry.INSTANCE.register(false, CommandHome::register);
-		CommandRegistry.INSTANCE.register(false, CommandRain::register);
-		CommandRegistry.INSTANCE.register(false, CommandRepair::register);
-		CommandRegistry.INSTANCE.register(false, CommandRndTp::register);
-		CommandRegistry.INSTANCE.register(false, CommandSetHome::register);
-		CommandRegistry.INSTANCE.register(false, CommandSetSpawn::register);
-		CommandRegistry.INSTANCE.register(false, CommandSetWarp::register);
-		CommandRegistry.INSTANCE.register(false, CommandSpawn::register);
-		CommandRegistry.INSTANCE.register(false, CommandSun::register);
-		CommandRegistry.INSTANCE.register(false, CommandTpa::register);
-		CommandRegistry.INSTANCE.register(false, CommandTpAccept::register);
-		CommandRegistry.INSTANCE.register(false, CommandTpDeny::register);
-		CommandRegistry.INSTANCE.register(false, CommandWarp::register);
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+			LOGGER.info(Text.translatable("commands.mycommands.test.translations").getString());
+			//if (environment.integrated) {
+			if (true) {
+				CommandBack.register(dispatcher);
+				CommandDay.register(dispatcher);
+				CommandDelHome.register(dispatcher);
+				CommandDelWarp.register(dispatcher);
+				//CommandEnderChest.register(dispatcher);
+				CommandFly.register(dispatcher);
+				//CommandGM.register(dispatcher);
+				CommandGod.register(dispatcher);
+				CommandHeal.register(dispatcher);
+				CommandHome.register(dispatcher);
+				CommandRain.register(dispatcher);
+				CommandRepair.register(dispatcher);
+				CommandRndTp.register(dispatcher);
+				CommandSetHome.register(dispatcher);
+				CommandSetSpawn.register(dispatcher);
+				CommandSetWarp.register(dispatcher);
+				CommandSpawn.register(dispatcher);
+				CommandSun.register(dispatcher);
+				CommandTpa.register(dispatcher);
+				CommandTpAccept.register(dispatcher);
+				CommandTpDeny.register(dispatcher);
+				CommandWarp.register(dispatcher);
+			}
+		});
 
 
 
 	}
 
 	private static void initWorlds() {
-		ServerStartCallback.EVENT.register(server ->{
+		ServerLifecycleEvents.SERVER_STARTED.register(server ->{
 
 			
 
 			if(server.isDedicated()) {
-				worlddir = new File(server.getRunDirectory(),server.getLevelName());
+				worlddir = new File(server.getRunDirectory(),server.getSaveProperties().getLevelName());
 
 			}else {
 
-				worlddir = server.getIconFile().getParentFile();
+				worlddir = server.getIconFile().get().toFile();
 			} 
 		});
-		ServerStartCallback.EVENT.register(server ->{
+		ServerLifecycleEvents.SERVER_STARTED.register(server ->{
 			WarpPoint.loadAll();
 			HomePoint.loadAll();
 		});

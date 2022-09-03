@@ -10,12 +10,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.WarpPoint;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-
-
+import net.minecraft.text.Text;
 
 
 public class CommandDelWarp  {
@@ -45,13 +44,13 @@ public class CommandDelWarp  {
 
 			if (warpPoint == null)
 			{
-				player.addChatMessage(new TranslatableComponent("commands.delwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.delwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
 
 			}
 			else
 			{
 				WarpPoint.delWarpPoint(warpPointName);
-				player.addChatMessage(new TranslatableComponent("commands.delwarp.done",warpPointName).setStyle(MyStyle.Green), false);
+				player.sendMessage(Text.translatable("commands.delwarp.done",warpPointName).setStyle(MyStyle.Green), false);
 			}
 		}
 		return 1;

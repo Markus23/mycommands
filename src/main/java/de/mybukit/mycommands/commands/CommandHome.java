@@ -10,10 +10,10 @@ import de.mybukit.mycommands.helper.HomePoint;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.Teleport;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 
 public class CommandHome  {
@@ -38,14 +38,14 @@ public class CommandHome  {
 		if (home != null)
 		{
 			Teleport.warp(player, home.location, false);
-			player.addChatMessage(new TranslatableComponent("commands.home.done",home.homename).setStyle(MyStyle.Green), false);
+			player.sendMessage(Text.translatable("commands.home.done",home.homename).setStyle(MyStyle.Green), false);
 		} else
 		{	
-			player.addChatMessage(new TranslatableComponent("commands.home.wrong").setStyle(MyStyle.Red), false);
+			player.sendMessage(Text.translatable("commands.home.wrong").setStyle(MyStyle.Red), false);
 			if(!HomePoint.gethomePoints(player).equals("")){
-				player.addChatMessage(new TranslatableComponent("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);	
+				player.sendMessage(Text.translatable("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);
 			}else{
-				player.addChatMessage(new TranslatableComponent("commands.home.failure").setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.home.failure").setStyle(MyStyle.Red), false);
 			}
 		}
 		return 1;
@@ -58,15 +58,15 @@ public class CommandHome  {
 		HomePoint home = HomePoint.getHome(player,"home");
 		if(home!=null){
 			Teleport.warp(player, home.location, false);
-			player.addChatMessage(new TranslatableComponent("commands.home.done",home.homename).setStyle(MyStyle.Green), false);
+			player.sendMessage(Text.translatable("commands.home.done",home.homename).setStyle(MyStyle.Green), false);
 
 		}else{
 
 			if(!HomePoint.gethomePoints(player).equals("")) {
-				player.addChatMessage(new TranslatableComponent("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);	
+				player.sendMessage(Text.translatable("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);
 			} else
 			{
-				player.addChatMessage(new TranslatableComponent("commands.home.failure").setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.home.failure").setStyle(MyStyle.Red), false);
 
 			}
 		}

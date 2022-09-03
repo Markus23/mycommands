@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import de.mybukit.mycommands.MyCommands;
 import net.minecraft.server.network.ServerPlayerEntity;
-
+import net.minecraft.util.registry.RegistryKey;
 
 
 public class HomePoint
@@ -116,8 +116,6 @@ public class HomePoint
 
 	/**
 	 * used to rebuild from string
-	 * @param location2 
-	 * @param homename 
 	 */
 	public HomePoint(String info) 
 	{
@@ -134,7 +132,7 @@ public class HomePoint
 			System.err.println("Exception on attemping to rebuild WarpPoint from String.");
 			UUID="Error";
 			homename = "Error";
-			location = new Location(0,0,0,0);
+			location = new Location(0,0,0,"minecraft:overworld");
 		}
 	}
 

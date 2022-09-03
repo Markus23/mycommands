@@ -10,12 +10,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.helper.HomePoint;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-
-
+import net.minecraft.text.Text;
 
 
 public class CommandDelHome {
@@ -40,14 +39,14 @@ public class CommandDelHome {
 
 		if (warpPoint == null)
 		{
-			player.addChatMessage(new TranslatableComponent("commands.delhome.failure",homePointName).setStyle(MyStyle.Red), false);
-			player.addChatMessage(new TranslatableComponent("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);	
+			player.sendMessage(Text.translatable("commands.delhome.failure",homePointName).setStyle(MyStyle.Red), false);
+			player.sendMessage(Text.translatable("commands.home.list",HomePoint.gethomePoints(player)).setStyle(MyStyle.Aqua), false);
 
 		}
 		else
 		{
 			HomePoint.delHomePoint(player, homePointName);
-			player.addChatMessage(new TranslatableComponent("commands.delhome.done",homePointName).setStyle(MyStyle.Green), false);
+			player.sendMessage(Text.translatable("commands.delhome.done",homePointName).setStyle(MyStyle.Green), false);
 
 		}
 		return 1;

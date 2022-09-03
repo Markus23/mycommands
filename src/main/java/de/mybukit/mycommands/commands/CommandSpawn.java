@@ -33,7 +33,7 @@ public class CommandSpawn
 		int x = world.getLevelProperties().getSpawnX();
 		int y = world.getLevelProperties().getSpawnY();
 		int z = world.getLevelProperties().getSpawnZ();
-		int dim = 0;
+		String dim = world.getRegistryKey().getValue().toString();
 		
 		Teleport.warp(player, new Location(x, y, z, dim), true);
 		return 1;

@@ -15,6 +15,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -68,7 +69,7 @@ public class CommandRndTp
 		} 
 		
 		Teleport.warp(
-				player,new Location(pos1,player.dimension.getRawId()),false);
+				player,new Location(pos1,player.getWorld().getRegistryKey().getValue().toString()),false);
 		return 1;
 		 
 	}
@@ -84,8 +85,8 @@ public class CommandRndTp
 
 
 		//TODO: Find a better way to check for biome without loading the chunk
-		Biome biome = world.getBiome(new BlockPos(x, y, z));
-		if (biome.getCategory().getName().equals("ocean"))
+		RegistryEntry<Biome> biome = world.getBiome(new BlockPos(x, y, z));
+		if (biome.getKey().get().getValue().toString().contains("ocean"))
 		{
 			return findBlockPos(world);
 		}
@@ -98,7 +99,7 @@ public class CommandRndTp
 
 			if (chunk.getBlockState(new BlockPos(x, y, z)).getMaterial() != Material.AIR)
 			{
-				return new Location(x + 0.5D, y + 2.5D, z + 0.5D, world.getDimension().getType().getRawId());
+				return new Location(x + 0.5D, y + 2.5D, z + 0.5D, world.getRegistryKey().getValue().toString());
 			}
 		}
 

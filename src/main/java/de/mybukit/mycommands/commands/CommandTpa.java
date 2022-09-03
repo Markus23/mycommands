@@ -8,16 +8,16 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.commands.mycomm.TeleportRequests;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.command.arguments.EntityArgumentType;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+
+import java.awt.*;
 
 
-
-public class CommandTpa 
+public class CommandTpa
 {
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		LiteralArgumentBuilder<ServerCommandSource> literal = CommandManager.literal("tpa");
@@ -35,12 +35,11 @@ public class CommandTpa
 		 	if(requestedPlayer.getUuid() != player.getUuid()) {
 				TeleportRequests.add(requestedPlayer.getUuid(), player.getUuid());
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.tpa.request",(new TextComponent(player.getEntityName()).setStyle(MyStyle.Gold))).setStyle(MyStyle.Green), false);
+				requestedPlayer.sendMessage(Text.translatable("commands.tpa.request", Text.of(player.getEntityName()).copy().setStyle(MyStyle.Gold)).setStyle(MyStyle.Green), false);
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.tpa.info", false).setStyle(MyStyle.Aqua),false);
-				
-		 		}else {
-					requestedPlayer.addChatMessage(new TranslatableComponent("commands.tpa.error", false).setStyle(MyStyle.Red),false);
+				requestedPlayer.sendMessage(Text.translatable("commands.tpa.info", false).setStyle(MyStyle.Aqua),false);
+		 		} else {
+					requestedPlayer.sendMessage(Text.translatable("commands.tpa.error", false).setStyle(MyStyle.Red),false);
 
 		 		}
 		 return 1;

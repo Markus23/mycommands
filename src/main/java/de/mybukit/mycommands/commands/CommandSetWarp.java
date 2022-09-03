@@ -9,10 +9,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.WarpPoint;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 
 public class CommandSetWarp   {
@@ -40,10 +41,10 @@ public class CommandSetWarp   {
 			if (warpPoint == null)
 			{
 				WarpPoint.setWarpPoint(player,warpPointName);
-				player.addChatMessage(new TranslatableComponent("commands.setwarp.done",warpPointName).setStyle(MyStyle.Green), false);
+				player.sendMessage(Text.translatable("commands.setwarp.done",warpPointName).setStyle(MyStyle.Green), false);
 
 			}else{
-				player.addChatMessage(new TranslatableComponent("commands.setwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.setwarp.failure",warpPointName).setStyle(MyStyle.Red), false);
 
 			}
 		}

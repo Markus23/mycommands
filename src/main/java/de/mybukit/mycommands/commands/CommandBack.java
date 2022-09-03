@@ -8,10 +8,10 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.Teleport;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class CommandBack
 {
@@ -29,10 +29,10 @@ public class CommandBack
 
 		if (Teleport.goBack(player))
 		{
-			player.addChatMessage(new TranslatableComponent("commands.back.done").setStyle(MyStyle.Green), false);
+			player.sendMessage(Text.translatable("commands.back.done").setStyle(MyStyle.Green), false);
 			} else
 			{
-				player.addChatMessage(new TranslatableComponent("commands.back.failure").setStyle(MyStyle.Red), false);
+				player.sendMessage(Text.translatable("commands.back.failure").setStyle(MyStyle.Red), false);
 		}
 		return 1;
 	}

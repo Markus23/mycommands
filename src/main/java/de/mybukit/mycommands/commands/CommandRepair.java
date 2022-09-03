@@ -9,10 +9,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 //import static net.minecraft.server.command.CommandManager.literal;
 
 public class CommandRepair {
@@ -37,10 +38,10 @@ public class CommandRepair {
 		ItemStack item = player.getMainHandStack();
 		if(item.isDamaged()) {
 		item.setDamage(0);
-		player.addChatMessage(new TranslatableComponent("commands.repair.done").setStyle(MyStyle.Green), false);
+		player.sendMessage(Text.translatable("commands.repair.done").setStyle(MyStyle.Green), false);
 
 		}else {
-			player.addChatMessage(new TranslatableComponent("commands.repair.failure").setStyle(MyStyle.Red), false);
+			player.sendMessage(Text.translatable("commands.repair.failure").setStyle(MyStyle.Red), false);
 
 		}
 		return Command.SINGLE_SUCCESS;
