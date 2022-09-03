@@ -7,10 +7,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
+import net.minecraft.world.level.ServerWorldProperties;
 
 
 public class CommandRain
@@ -25,13 +28,13 @@ public class CommandRain
 	}
 
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-	     ServerPlayerEntity player =context.getSource().getPlayer();
-		  context.getSource().getWorld().getLevelProperties().setClearWeatherTime(0);
-	      context.getSource().getWorld().getLevelProperties().setRainTime(6000);
-	      //context.getSource().getWorld().getLevelProperties().setThunderTime(int_1);
-	      context.getSource().getWorld().getLevelProperties().setRaining(true);
-	      context.getSource().getWorld().getLevelProperties().setThundering(false);
-		player.addChatMessage(new TranslatableComponent("commands.rain.done").setStyle(MyStyle.Green), false);
+	    ServerPlayerEntity player = context.getSource().getPlayer();
+		ServerWorldProperties properties = (ServerWorldProperties) context.getSource().getWorld().getLevelProperties();
+		properties.setClearWeatherTime(0);
+		properties.setRainTime(6000);
+		properties.setRaining(true);
+		properties.setThundering(false);
+		player.sendMessage(Text.translatable("commands.rain.done").setStyle(MyStyle.Green), false);
 		return 1;
 
 	}

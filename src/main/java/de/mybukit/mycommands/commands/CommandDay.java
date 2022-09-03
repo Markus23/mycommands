@@ -8,11 +8,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 
 public class CommandDay{
 
@@ -32,7 +32,7 @@ public class CommandDay{
 		ServerPlayerEntity player = context.getSource().getPlayer();
 		world.setTimeOfDay(2000);
 
-		player.addChatMessage(new TranslatableComponent("commands.day.done").setStyle(MyStyle.Green), false);
+		player.sendMessage(Text.translatable("commands.day.done").setStyle(MyStyle.Green), false);
 		return Command.SINGLE_SUCCESS;
 	}
 }

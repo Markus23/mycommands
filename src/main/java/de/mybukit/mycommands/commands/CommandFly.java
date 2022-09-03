@@ -7,12 +7,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerAbilities;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.world.GameMode;
 
 
@@ -34,24 +35,24 @@ public class CommandFly
 	
 
 		if (playerEntity.interactionManager.getGameMode()==GameMode.SURVIVAL||playerEntity.interactionManager.getGameMode()==GameMode.ADVENTURE) {
-			if (!playerEntity.abilities.allowFlying) {
-				playerEntity.abilities.allowFlying = true;
+			if (!playerEntity.getAbilities().allowFlying) {
+				playerEntity.getAbilities().allowFlying = true;
 				playerEntity.sendAbilitiesUpdate();
 
-				playerEntity.addChatMessage(new TranslatableComponent("commands.fly.enabled").setStyle(MyStyle.Green), false);
+				playerEntity.sendMessage(Text.translatable("commands.fly.enabled").setStyle(MyStyle.Green), false);
 
 			} else {
 
-				playerEntity.abilities.allowFlying = false;
-				playerEntity.abilities.flying = false;
+				playerEntity.getAbilities().allowFlying = false;
+				playerEntity.getAbilities().flying = false;
 
 				playerEntity.sendAbilitiesUpdate();
 
 
-				playerEntity.addChatMessage(new TranslatableComponent("commands.fly.disabled").setStyle(MyStyle.Green), false);
+				playerEntity.sendMessage(Text.translatable("commands.fly.disabled").setStyle(MyStyle.Green), false);
 			}
 		}else {
-			playerEntity.addChatMessage(new TranslatableComponent("commands.fly.error").setStyle(MyStyle.Red), false);
+			playerEntity.sendMessage(Text.translatable("commands.fly.error").setStyle(MyStyle.Red), false);
 
 		}
 		
@@ -63,24 +64,24 @@ public class CommandFly
 		 ServerPlayerEntity requestedPlayer = mycomm.getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
 
 		if (playerEntity.interactionManager.getGameMode()==GameMode.SURVIVAL||playerEntity.interactionManager.getGameMode()==GameMode.ADVENTURE) {
-			if (!requestedPlayer.abilities.allowFlying) {
-				requestedPlayer.abilities.allowFlying = true;
+			if (!requestedPlayer.getAbilities().allowFlying) {
+				requestedPlayer.getAbilities().allowFlying = true;
 				requestedPlayer.sendAbilitiesUpdate();
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.fly.enabled").setStyle(MyStyle.Green), false);
+				requestedPlayer.sendMessage(Text.translatable("commands.fly.enabled").setStyle(MyStyle.Green), false);
 
 			} else {
 
-				requestedPlayer.abilities.allowFlying = false;
-				requestedPlayer.abilities.flying = false;
+				requestedPlayer.getAbilities().allowFlying = false;
+				requestedPlayer.getAbilities().flying = false;
 
 				requestedPlayer.sendAbilitiesUpdate();
 
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.fly.disabled").setStyle(MyStyle.Green), false);
+				requestedPlayer.sendMessage(Text.translatable("commands.fly.disabled").setStyle(MyStyle.Green), false);
 			}
 		}else {
-			playerEntity.addChatMessage(new TranslatableComponent("commands.fly.error").setStyle(MyStyle.Red), false);
+			playerEntity.sendMessage(Text.translatable("commands.fly.error").setStyle(MyStyle.Red), false);
 
 		}
 

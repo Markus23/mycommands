@@ -7,10 +7,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class CommandSetSpawn
 {
@@ -28,10 +29,9 @@ public class CommandSetSpawn
 		ServerPlayerEntity player = context.getSource().getPlayer();
 
 
-	
-		
-		context.getSource().getWorld().setSpawnPos(player.getBlockPos().up());
-		player.addChatMessage(new TranslatableComponent("commands.setspawn.done").setStyle(MyStyle.Green), false);
+
+		context.getSource().getWorld().setSpawnPos(player.getBlockPos().up(), 0);
+		player.sendMessage(Text.translatable("commands.setspawn.done").setStyle(MyStyle.Green), false);
 
 		return 1;
 	}

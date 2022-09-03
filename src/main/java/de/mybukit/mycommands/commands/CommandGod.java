@@ -7,11 +7,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.command.arguments.EntityArgumentType;
-import net.minecraft.network.chat.TranslatableComponent;
+
+import net.minecraft.command.argument.EntityArgumentType;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.world.GameMode;
 
 
@@ -32,18 +34,18 @@ public class CommandGod
 
 		if (playerEntity.interactionManager.getGameMode()==GameMode.SURVIVAL||playerEntity.interactionManager.getGameMode()==GameMode.ADVENTURE) {
 			
-			if (!playerEntity.abilities.invulnerable) {
-				playerEntity.abilities.invulnerable = true;
+			if (!playerEntity.getAbilities().invulnerable) {
+				playerEntity.getAbilities().invulnerable = true;
 				playerEntity.sendAbilitiesUpdate();
-				playerEntity.addChatMessage(new TranslatableComponent("commands.god.enabled").setStyle(MyStyle.Green), false);
+				playerEntity.sendMessage(Text.translatable("commands.god.enabled").setStyle(MyStyle.Green), false);
 
 			} else {
-				playerEntity.abilities.invulnerable = false;
+				playerEntity.getAbilities().invulnerable = false;
 				playerEntity.sendAbilitiesUpdate();
-				playerEntity.addChatMessage(new TranslatableComponent("commands.god.disabled").setStyle(MyStyle.Green), false);
+				playerEntity.sendMessage(Text.translatable("commands.god.disabled").setStyle(MyStyle.Green), false);
 			}
 		}else {
-			playerEntity.addChatMessage(new TranslatableComponent("commands.god.error").setStyle(MyStyle.Red), false);
+			playerEntity.sendMessage(Text.translatable("commands.god.error").setStyle(MyStyle.Red), false);
 
 		}
 	
@@ -55,22 +57,22 @@ public class CommandGod
 		 ServerPlayerEntity requestedPlayer = mycomm.getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
 
 		if (playerEntity.interactionManager.getGameMode()==GameMode.SURVIVAL||playerEntity.interactionManager.getGameMode()==GameMode.ADVENTURE) {
-			if (!requestedPlayer.abilities.invulnerable) {
-				requestedPlayer.abilities.invulnerable = true;
+			if (!requestedPlayer.getAbilities().invulnerable) {
+				requestedPlayer.getAbilities().invulnerable = true;
 				requestedPlayer.sendAbilitiesUpdate();
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.god.enabled").setStyle(MyStyle.Green), false);
+				requestedPlayer.sendMessage(Text.translatable("commands.god.enabled").setStyle(MyStyle.Green), false);
 
 			} else {
 
-				requestedPlayer.abilities.invulnerable = false;
+				requestedPlayer.getAbilities().invulnerable = false;
 				requestedPlayer.sendAbilitiesUpdate();
 
 
-				requestedPlayer.addChatMessage(new TranslatableComponent("commands.god.disabled").setStyle(MyStyle.Green), false);
+				requestedPlayer.sendMessage(Text.translatable("commands.god.disabled").setStyle(MyStyle.Green), false);
 			}
 		}else {
-			playerEntity.addChatMessage(new TranslatableComponent("commands.god.error").setStyle(MyStyle.Red), false);
+			playerEntity.sendMessage(Text.translatable("commands.god.error").setStyle(MyStyle.Red), false);
 
 		}
 

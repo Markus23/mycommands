@@ -127,7 +127,7 @@ public class WarpPoint
 		{
 			System.err.println("Exception on attemping to rebuild WarpPoint from String.");
 			name = "Error";
-			location = new Location(0,0,0,0);
+			location = new Location(0,0,0,"minecraft:overworld");
 		}
 	}
 

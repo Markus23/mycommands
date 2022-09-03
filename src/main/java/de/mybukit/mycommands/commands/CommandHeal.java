@@ -6,7 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -25,7 +25,7 @@ public class CommandHeal
 
 	private static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity playerEntity = context.getSource().getPlayer();
-		playerEntity.setHealth(playerEntity.getHealthMaximum());
+		playerEntity.setHealth(playerEntity.getMaxHealth());
 		playerEntity.getHungerManager().setFoodLevel(20);
 		//playerEntity.getHungerManager().setSaturationLevelClient(5F);
 		
@@ -35,7 +35,7 @@ public class CommandHeal
 		
 		 ServerPlayerEntity requestedPlayer = mycomm.getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
 
-		requestedPlayer.setHealth(requestedPlayer.getHealthMaximum());
+		requestedPlayer.setHealth(requestedPlayer.getMaxHealth());
 		requestedPlayer.getHungerManager().setFoodLevel(20);
 		//requestedPlayer.getHungerManager().setSaturationLevelClient(5F);
 		

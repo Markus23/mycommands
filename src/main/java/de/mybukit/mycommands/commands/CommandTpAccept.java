@@ -11,11 +11,11 @@ import de.mybukit.mycommands.commands.mycomm.TeleportRequests;
 import de.mybukit.mycommands.helper.Location;
 import de.mybukit.mycommands.helper.Permission;
 import de.mybukit.mycommands.helper.Teleport;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-
+import net.minecraft.text.Text;
 
 
 public class CommandTpAccept  {
@@ -40,7 +40,7 @@ public class CommandTpAccept  {
 		ServerPlayerEntity player = context.getSource().getPlayer();
 
 		if (TeleportRequests.pending(player.getUuid())) {
-			List<ServerPlayerEntity> playerlist = context.getSource().getMinecraftServer().getPlayerManager().getPlayerList();
+			List<ServerPlayerEntity> playerlist = context.getSource().getServer().getPlayerManager().getPlayerList();
 			Boolean playerFound = false;
 			for (int i = 0; i < playerlist.size(); ++ i) {
 				if (playerlist.get(i).getUuid().equals(TeleportRequests.fromWho((player.getUuid())))) {
@@ -49,19 +49,19 @@ public class CommandTpAccept  {
 					ServerPlayerEntity teleportTo =  player;
 
 					
-						teleporter.addChatMessage(new TranslatableComponent("commands.tpa.gotaccepted"), false);
-						teleportTo.addChatMessage(new TranslatableComponent("commands.tpa.youaccepted"), false);
+						teleporter.sendMessage(Text.translatable("commands.tpa.gotaccepted"), false);
+						teleportTo.sendMessage(Text.translatable("commands.tpa.youaccepted"), false);
 						Teleport.warp(teleporter, new Location(teleportTo), true);
 						//teleporter.setPositionAndUpdate(teleportTo.posX, teleportTo.posY, teleportTo.posZ);
 					//}
 				}
 			}
 			if (!playerFound) {
-				player.addChatMessage(new TranslatableComponent("commands.tpa.notonline"), false);
+				player.sendMessage(Text.translatable("commands.tpa.notonline"), false);
 			}
 			TeleportRequests.remove(player.getUuid());
 		} else {
-			player.addChatMessage(new TranslatableComponent("commands.tpa.nonetoaccept"), false);
+			player.sendMessage(Text.translatable("commands.tpa.nonetoaccept"), false);
 		}
 		return 1;
 	}

@@ -1,16 +1,16 @@
 package de.mybukit.mycommands.helper;
 
-import net.minecraft.ChatFormat;
-import net.minecraft.network.chat.Style;
+import net.minecraft.text.Style;
+import net.minecraft.util.Formatting;
 
 
 public class MyStyle {
 	
-	public static Style Aqua = new Style().setColor(ChatFormat.AQUA);
-	public static Style Green = new Style().setColor(ChatFormat.GREEN);
+	public static Style Aqua = Style.EMPTY.withColor(Formatting.AQUA);
+	public static Style Green = Style.EMPTY.withColor(Formatting.GREEN);
 
 
-	public static Style Red = new Style().setColor(ChatFormat.RED);
-	public static Style Gold = new Style().setColor(ChatFormat.GOLD);
+	public static Style Red = Style.EMPTY.withColor(Formatting.RED);
+	public static Style Gold = Style.EMPTY.withColor(Formatting.GOLD);
 	
 }

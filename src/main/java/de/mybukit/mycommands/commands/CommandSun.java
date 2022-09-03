@@ -7,10 +7,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import de.mybukit.mycommands.helper.MyStyle;
 import de.mybukit.mycommands.helper.Permission;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.world.level.ServerWorldProperties;
 
 
 public class CommandSun
@@ -26,13 +28,14 @@ public class CommandSun
 	}
 
 	public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-	     ServerPlayerEntity player =context.getSource().getPlayer();
+		ServerPlayerEntity player =context.getSource().getPlayer();
+		ServerWorldProperties properties = (ServerWorldProperties) context.getSource().getWorld().getLevelProperties();
 
-		context.getSource().getWorld().getLevelProperties().setClearWeatherTime(10000);
-	      context.getSource().getWorld().getLevelProperties().setRainTime(0);
-	      context.getSource().getWorld().getLevelProperties().setRaining(false);
-	      context.getSource().getWorld().getLevelProperties().setThundering(false);
-		player.addChatMessage(new TranslatableComponent("commands.sun.done").setStyle(MyStyle.Green), false);
+		properties.setClearWeatherTime(10000);
+		properties.setRainTime(0);
+		properties.setRaining(false);
+		properties.setThundering(false);
+		player.sendMessage(Text.translatable("commands.sun.done").setStyle(MyStyle.Green), false);
 
 		return 1;
 
